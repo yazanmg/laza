@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laza/pages/login.dart';
+import 'package:laza/pages/third_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccountPage extends StatefulWidget {
@@ -68,6 +69,9 @@ class _AccountPageState extends State<AccountPage> {
         const SnackBar(
           content: Text('Successfully updated profile!'),
         );
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const ThirdPage(),
+        ));
       }
     } on PostgrestException catch (error) {
       SnackBar(
@@ -103,7 +107,9 @@ class _AccountPageState extends State<AccountPage> {
       );
     } finally {
       if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/login');
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ));
       }
     }
   }
